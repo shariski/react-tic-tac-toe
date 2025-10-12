@@ -17,10 +17,10 @@ jobs:
         # For Docker Hub, replace ghcr.io with docker.io
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.IMAGE_NAME }} .
+        run: docker build -t ghcr.io/${{ github.repository }}:latest .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.IMAGE_NAME }}
+        run: docker push ghcr.io/${{ github.repository }}:latest
 
       - name: Setup SSH
         run: |
