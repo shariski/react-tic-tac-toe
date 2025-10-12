@@ -33,7 +33,7 @@ jobs:
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
             docker login ghcr.io -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_TOKEN }}
-            docker pull ${{ secrets.IMAGE_NAME }}
+            docker pull ghcr.io/${{ github.repository }}:latest
             docker stop myapp || true
             docker rm myapp || true
             docker run -d --name myapp -p 3000:3000 ${{ secrets.IMAGE_NAME }}
