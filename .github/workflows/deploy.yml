@@ -32,9 +32,8 @@ jobs:
       - name: Deploy on VPS
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
+            cd ~/tic-tac-toe
             docker login ghcr.io -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_TOKEN }}
-            docker pull ghcr.io/${{ github.repository }}:latest
-            docker stop myapp || true
-            docker rm myapp || true
-            docker run -d --name myapp -p 3000:3000 ghcr.io/${{ github.repository }}:latest
+            docker compose pull web
+            docker compose up -d --build web
           EOF
