@@ -31,10 +31,10 @@ jobs:
 
       - name: Deploy on VPS
         run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
-            cd ~/tic-tac-toe
-            docker login ghcr.io -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_TOKEN }}
-            export GITHUB_REPO=${{ github.repository }}
-            docker compose pull web
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            cd ~/tic-tac-toe &&
+            docker login ghcr.io -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_TOKEN }} &&
+            export GITHUB_REPO=${{ github.repository }} &&
+            docker compose pull web &&
             docker compose up -d --build web
-          EOF
+          "
