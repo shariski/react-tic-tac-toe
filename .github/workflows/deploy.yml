@@ -35,6 +35,6 @@ jobs:
             cd ~/tic-tac-toe
             export GITHUB_REPO=${{ github.repository }}
             docker login ghcr.io -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_TOKEN }}
-            docker compose pull web
+            docker compose pull ttt_app
             docker compose up -d --build ttt_app
           EOF
