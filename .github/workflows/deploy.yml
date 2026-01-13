@@ -32,6 +32,7 @@ jobs:
       - name: Deploy on VPS
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << EOF
+            ls
             cd ~/tic-tac-toe
             export GITHUB_REPO=${{ github.repository }}
             docker login ghcr.io -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_TOKEN }}
